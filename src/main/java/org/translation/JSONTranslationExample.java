@@ -56,7 +56,7 @@ public class JSONTranslationExample {
                 return country.getString(languageCode);
             }
         }
-        return "Country/translation not found";
+        return "Country not found";
     }
 
     /**

@@ -90,7 +90,7 @@ public class JSONTranslator implements Translator {
         for (String c : countries) {
             JSONObject jsonObject = new JSONObject(c);
             if (jsonObject.getString("alpha3").equals(country)) {
-                return jsonObject.getString("language");
+                return jsonObject.getString(language);
             }
         }
         return null;
