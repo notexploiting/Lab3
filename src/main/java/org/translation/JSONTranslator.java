@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,6 +17,7 @@ import org.json.JSONObject;
 public class JSONTranslator implements Translator {
 
     // TODO Task: pick appropriate instance variables for this class
+    public static final String ALPHA3 = "alpha3";
     private final ArrayList<String> countries = new ArrayList<String>();
     private CountryCodeConverter countryCodeConverter = new CountryCodeConverter();
     private LanguageCodeConverter languageCodeConverter = new LanguageCodeConverter();
@@ -58,18 +58,18 @@ public class JSONTranslator implements Translator {
     public List<String> getCountryLanguages(String country) {
         // TODO Task: return an appropriate list of language codes,
         //            but make sure there is no aliasing to a mutable object
-        List<String> country_languages = new ArrayList<>();
+        List<String> countryLanguages = new ArrayList<>();
         for (String c : countries) {
             JSONObject jsonObject = new JSONObject(c);
-            if (jsonObject.getString("alpha3").equals(country)) {
+            if (jsonObject.getString(ALPHA3).equals(country)) {
                 for (String key : jsonObject.keySet()) {
-                    if (!"alpha3".equals(key) && !"alpha2".equals(key) && !"id".equals(key)) {
-                        country_languages.add(key);
+                    if (!ALPHA3.equals(key) && !"alpha2".equals(key) && !"id".equals(key)) {
+                        countryLanguages.add(key);
                     }
                 }
             }
         }
-        return country_languages;
+        return countryLanguages;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class JSONTranslator implements Translator {
         List<String> countryCodes = new ArrayList<>();
         for (String c : countries) {
             JSONObject jsonObject = new JSONObject(c);
-            countryCodes.add(jsonObject.getString("alpha3"));
+            countryCodes.add(jsonObject.getString(ALPHA3));
         }
         return countryCodes;
     }
@@ -89,7 +89,7 @@ public class JSONTranslator implements Translator {
         // TODO Task: complete this method using your instance variables as needed
         for (String c : countries) {
             JSONObject jsonObject = new JSONObject(c);
-            if (jsonObject.getString("alpha3").equals(country)) {
+            if (jsonObject.getString(ALPHA3).equals(country)) {
                 return jsonObject.getString(language);
             }
         }
