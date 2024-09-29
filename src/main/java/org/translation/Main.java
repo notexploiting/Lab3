@@ -19,6 +19,8 @@ public class Main {
      * A class implementing the Translator interface is created and passed into a call to runProgram.
      * @param args not used by the program
      */
+    public static final String QUIT = "quit";
+
     public static void main(String[] args) {
 
         // TODO Task: once you finish the JSONTranslator,
@@ -41,7 +43,7 @@ public class Main {
             String country = promptForCountry(translator);
             // TODO CheckStyle: The String "quit" appears 3 times in the file.
             // TODO Checkstyle: String literal expressions should be on the left side of an equals comparison
-            if (country.equals("quit")) {
+            if (QUIT.equals(country)) {
                 break;
             }
             // TODO Task: Once you switch promptForCountry so that it returns the country
@@ -61,7 +63,7 @@ public class Main {
             Scanner s = new Scanner(System.in);
             String textTyped = s.nextLine();
 
-            if ("quit".equals(textTyped)) {
+            if (QUIT.equals(textTyped)) {
                 break;
             }
         }
